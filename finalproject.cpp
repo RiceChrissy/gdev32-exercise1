@@ -21,7 +21,7 @@ RIGHT_CTRL - Decrease Z-axis Value
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
-#define WINDOW_TITLE "Final Project - Christian Olivares"
+#define WINDOW_TITLE "Exercise 1 - John Tamano & Christian Olivares"
 GLFWwindow *pWindow;
 
 //Camera
@@ -215,6 +215,62 @@ float vertices[] =
         
 };
 
+float fenceVertices[] =
+    {
+        // position (x,y,z)             color (r,g,b)               normal (x,y,z)      texture(s,t)
+
+        //Cube Base                     //0
+        0.00f, 0.00f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 0.0f,
+        0.00f, 0.00f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+        0.28f, 0.00f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 0.0f,
+        0.28f, 0.00f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 0.0f,
+
+        //Top Cube                      //4
+        0.00f, 1.12f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 1.0f,
+        0.00f, 1.12f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 1.0f,
+        0.28f, 1.12f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 1.0f,
+        0.28f, 1.12f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 1.0f,
+
+        //Tip                           //8
+        0.14f, 1.40f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+        0.14f, 1.40f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+    };
+
+GLuint fenceIndices[] =
+{
+    //Base
+    0,1,2,
+    3,2,1,
+    //Front Face Cube
+    0,2,4,
+    2,6,4,
+    //Back Face Cube
+    7,3,1,
+    1,5,7,
+    //Left Face Cube
+    5,1,0,
+    0,4,5,
+    //Right Face Cube
+    2,3,6,
+    7,6,3,
+
+
+    //Front Face Tip
+    6,8,4,
+    //Left Face Tip
+    9,5,4,
+    4,8,9,
+    //Right Face Tip
+    6,7,9,
+    9,8,6,
+    //Back Face Tip
+    5,9,7,
+};
+
+
+
+
+
 float vertices2[] =
     {
         // position (x,y,z)             color (r,g,b)           normal (x,y,z)
@@ -339,16 +395,56 @@ GLuint indices[] =
 
 
 void getNormals()
-{
-    for(int i = 0; i < static_cast<int>(sizeof(vertices)/(sizeof(float))); i+=33){
-        glm::vec3 vertexA = glm::vec3(vertices[i], vertices[i+1], vertices[i+2]);
-        //std::cout << "VertexA: " << vertices[i] << ", " << vertices[i+1] << ", " << vertices[i+2] << std::endl;
-        glm::vec3 vertexB = glm::vec3(vertices[i+11], vertices[i+12], vertices[i+13]);
-        glm::vec3 vertexC = glm::vec3(vertices[i+22], vertices[i+23], vertices[i+24]);
+{   
+    //FOR CUBES
+    // for(int i = 0; i < static_cast<int>(sizeof(vertices)/(sizeof(float))); i+=33){
+    //     glm::vec3 vertexA = glm::vec3(vertices[i], vertices[i+1], vertices[i+2]);
+    //     //std::cout << "VertexA: " << vertices[i] << ", " << vertices[i+1] << ", " << vertices[i+2] << std::endl;
+    //     glm::vec3 vertexB = glm::vec3(vertices[i+11], vertices[i+12], vertices[i+13]);
+    //     glm::vec3 vertexC = glm::vec3(vertices[i+22], vertices[i+23], vertices[i+24]);
 
-        glm::vec3 differenceBA = vertexB - vertexA;
+    //     glm::vec3 differenceBA = vertexB - vertexA;
+    //     //std::cout << "B-A: " << differenceBA.x << ", " << differenceBA.y << ", " << differenceBA.z << std::endl;
+    //     glm::vec3 differenceCA = vertexC - vertexA;
+        
+
+    //     glm::vec3 crossProduct = glm::cross(differenceBA, differenceCA);
+    //     //std::cout << "Cross: " << crossProduct.x << ", " << crossProduct.y << ", " << crossProduct.z << std::endl;
+
+    //     glm::vec3 normalVector = glm::normalize(crossProduct);
+    //     //std::cout << "normalVector: " << normalVector.x << ", " << normalVector.y << ", " << normalVector.z << std::endl;
+
+    //     //Normal of Vertex A
+    //     vertices[i+6] = normalVector.x;
+    //     vertices[i+7] = normalVector.y;
+    //     vertices[i+8] = normalVector.z;
+    //     //Normal of Vertex B
+    //     vertices[i+17] = normalVector.x;
+    //     vertices[i+18] = normalVector.y;
+    //     vertices[i+19] = normalVector.z;
+    //     //Normal of Vertex C
+    //     vertices[i+28] = normalVector.x;
+    //     vertices[i+29] = normalVector.y;
+    //     vertices[i+30] = normalVector.z;
+    //     //std::cout << "Triangle " << i/27 << ": " << vertices[i+6] << ", " << vertices[i+7] << ", " << vertices[i+8] << std::endl;
+    // };
+
+
+    for(int i = 0; i < static_cast<int>(sizeof(fenceIndices)/(sizeof(int))); i+=3){
+        
+        //*11 because each vertex has 11 elements
+        int vertexA = fenceIndices[i]*11;
+        int vertexB = fenceIndices[i+1]*11;
+        int vertexC = fenceIndices[i+2]*11;
+
+        glm::vec3 vectorA = glm::vec3(fenceVertices[vertexA], fenceVertices[vertexA+1], fenceVertices[vertexA+2]);
+        // std::cout << "VertexA: " << fenceVertices[i] << ", " << fenceVertices[i+1] << ", " << fenceVertices[i+2] << std::endl;
+        glm::vec3 vectorB = glm::vec3(fenceVertices[vertexB], fenceVertices[vertexB+1], fenceVertices[vertexB+2]);
+        glm::vec3 vectorC = glm::vec3(fenceVertices[vertexC], fenceVertices[vertexC+1], fenceVertices[vertexC+2]);
+
+        glm::vec3 differenceBA = vectorB - vectorA;
         //std::cout << "B-A: " << differenceBA.x << ", " << differenceBA.y << ", " << differenceBA.z << std::endl;
-        glm::vec3 differenceCA = vertexC - vertexA;
+        glm::vec3 differenceCA = vectorC - vectorA;
         
 
         glm::vec3 crossProduct = glm::cross(differenceBA, differenceCA);
@@ -358,29 +454,37 @@ void getNormals()
         //std::cout << "normalVector: " << normalVector.x << ", " << normalVector.y << ", " << normalVector.z << std::endl;
 
         //Normal of Vertex A
-        vertices[i+6] = normalVector.x;
-        vertices[i+7] = normalVector.y;
-        vertices[i+8] = normalVector.z;
+        fenceVertices[vertexA+6] = normalVector.x;
+        fenceVertices[vertexA+7] = normalVector.y;
+        fenceVertices[vertexA+8] = normalVector.z;
         //Normal of Vertex B
-        vertices[i+17] = normalVector.x;
-        vertices[i+18] = normalVector.y;
-        vertices[i+19] = normalVector.z;
+        fenceVertices[vertexB+6] = normalVector.x;
+        fenceVertices[vertexB+7] = normalVector.y;
+        fenceVertices[vertexB+8] = normalVector.z;
         //Normal of Vertex C
-        vertices[i+28] = normalVector.x;
-        vertices[i+29] = normalVector.y;
-        vertices[i+30] = normalVector.z;
+        fenceVertices[vertexC+6] = normalVector.x;
+        fenceVertices[vertexC+7] = normalVector.y;
+        fenceVertices[vertexC+8] = normalVector.z;
         //std::cout << "Triangle " << i/27 << ": " << vertices[i+6] << ", " << vertices[i+7] << ", " << vertices[i+8] << std::endl;
     };
 
-    for(int i = 0; i < static_cast<int>(sizeof(vertices2)/(sizeof(float))); i+=27){
-        glm::vec3 vertexA = glm::vec3(vertices2[i], vertices2[i+1], vertices2[i+2]);
-        //std::cout << "VertexA: " << vertices2[i] << ", " << vertices2[i+1] << ", " << vertices2[i+2] << std::endl;
-        glm::vec3 vertexB = glm::vec3(vertices2[i+9], vertices2[i+10], vertices2[i+11]);
-        glm::vec3 vertexC = glm::vec3(vertices2[i+18], vertices2[i+19], vertices2[i+20]);
 
-        glm::vec3 differenceBA = vertexB - vertexA;
+
+    for(int i = 0; i < static_cast<int>(sizeof(indices)/(sizeof(int))); i+=3){
+        
+        //*9 because each vertex has 9 elements
+        int vertexA = indices[i]*9;
+        int vertexB = indices[i+1]*9;
+        int vertexC = indices[i+2]*9;
+
+        glm::vec3 vectorA = glm::vec3(vertices2[vertexA], vertices2[vertexA+1], vertices2[vertexA+2]);
+        // std::cout << "VertexA: " << fenceVertices[i] << ", " << fenceVertices[i+1] << ", " << fenceVertices[i+2] << std::endl;
+        glm::vec3 vectorB = glm::vec3(vertices2[vertexB], vertices2[vertexB+1], vertices2[vertexB+2]);
+        glm::vec3 vectorC = glm::vec3(vertices2[vertexC], vertices2[vertexC+1], vertices2[vertexC+2]);
+
+        glm::vec3 differenceBA = vectorB - vectorA;
         //std::cout << "B-A: " << differenceBA.x << ", " << differenceBA.y << ", " << differenceBA.z << std::endl;
-        glm::vec3 differenceCA = vertexC - vertexA;
+        glm::vec3 differenceCA = vectorC - vectorA;
         
 
         glm::vec3 crossProduct = glm::cross(differenceBA, differenceCA);
@@ -390,36 +494,58 @@ void getNormals()
         //std::cout << "normalVector: " << normalVector.x << ", " << normalVector.y << ", " << normalVector.z << std::endl;
 
         //Normal of Vertex A
-        vertices2[i+6] = normalVector.x;
-        vertices2[i+7] = normalVector.y;
-        vertices2[i+8] = normalVector.z;
+        vertices2[vertexA+6] = normalVector.x;
+        vertices2[vertexA+7] = normalVector.y;
+        vertices2[vertexA+8] = normalVector.z;
         //Normal of Vertex B
-        vertices2[i+15] = normalVector.x;
-        vertices2[i+16] = normalVector.y;
-        vertices2[i+17] = normalVector.z;
+        vertices2[vertexB+6] = normalVector.x;
+        vertices2[vertexB+7] = normalVector.y;
+        vertices2[vertexB+8] = normalVector.z;
         //Normal of Vertex C
-        vertices2[i+24] = normalVector.x;
-        vertices2[i+25] = normalVector.y;
-        vertices2[i+26] = normalVector.z;
-        //std::cout << "Triangle " << i/27 << ": " << vertices2[i+6] << ", " << vertices2[i+7] << ", " << vertices2[i+8] << std::endl;
+        vertices2[vertexC+6] = normalVector.x;
+        vertices2[vertexC+7] = normalVector.y;
+        vertices2[vertexC+8] = normalVector.z;
+        //std::cout << "Triangle " << i/27 << ": " << vertices[i+6] << ", " << vertices[i+7] << ", " << vertices[i+8] << std::endl;
     };
 };
 
 
 GLuint vbo, vbo2;
-GLuint vao, vao2, ebo2; // 1 vao, ebo, vbo
+GLuint vao, vao2; // 1 vao, ebo, vbo
+GLuint ebo, ebo2;
 GLuint shader;
 GLuint texture;
 
 bool setup()
 {
     getNormals();
+    //For Cubes
+    // glGenVertexArrays(1, &vao);
+    // glGenBuffers(1, &vbo);
+    // // glGenBuffers(1, &ebo);
+    // glBindVertexArray(vao);
+    // glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
+    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (3 * sizeof(float)));
+    // glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (6 * sizeof(float)));
+    // glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (9 * sizeof(float)));
+
+    // glEnableVertexAttribArray(0);
+    // glEnableVertexAttribArray(1);
+    // glEnableVertexAttribArray(2);
+    // glEnableVertexAttribArray(3);
+
+    //For fenceIndices
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
-    // glGenBuffers(1, &ebo);
+    glGenBuffers(1, &ebo);
     glBindVertexArray(vao);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(fenceVertices), fenceVertices, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(fenceIndices), fenceIndices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (3 * sizeof(float)));
@@ -452,7 +578,7 @@ bool setup()
     shader = gdevLoadShader("finalproject.vs", "finalproject.fs");
     if (!shader) return false;
         
-    texture = gdevLoadTexture("theglory.jpg", GL_REPEAT, true, true);
+    texture = gdevLoadTexture("wood.jpg", GL_REPEAT, true, true);
     if (! texture) return false;
 
     return true;
@@ -507,15 +633,17 @@ void render()
     else{
         pulse = 1;
     }
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(pulse, pulse, pulse));
+    // modelMatrix = glm::scale(modelMatrix, glm::vec3(pulse, pulse, pulse));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.2f, 0.0f, -0.45f));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians( (float) - 180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    // modelMatrix = glm::rotate(modelMatrix, glm::radians( (float) - 180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
     glm::mat4 normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
     glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
+    //For cubes
+    // glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
+    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
     
 
 
@@ -529,7 +657,9 @@ void render()
     normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
     glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
+    //For cubes
+    // glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
+    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 
 
@@ -544,7 +674,9 @@ void render()
     normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
     glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
+    //For cubes
+    // glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
+    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 
 
