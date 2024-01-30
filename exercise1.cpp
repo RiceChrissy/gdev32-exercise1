@@ -35,6 +35,7 @@ void parseVertices(string objfile){
     string line;
     string v, x, y, z;
     ifstream objectFile(objfile);
+    int counter;
     while (!objectFile.eof()) {
         getline(objectFile, line);
         if(line[0] == 'v' && line[1] == ' '){
@@ -43,9 +44,11 @@ void parseVertices(string objfile){
             vertices.push_back(stof(x));
             vertices.push_back(stof(y));
             vertices.push_back(stof(z));
-
+            counter++;
             cout << x << " " << y << " " << z;
         }
+        cout << "counter: " << counter;
+        break;
     }
     
 }
