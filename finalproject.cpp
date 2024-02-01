@@ -42,236 +42,223 @@ glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 glm::vec3 lightPosition = glm::vec3(-2.0f, 0.0f, 1.0f);
 
-float vertices[] =
-    {
-        // position (x,y,z)             color (r,g,b)           normal (x,y,z)      texture (s,t)
-        // square # 1, red
-
-        // face # 1                     // 0    BACK FACE
-        -0.25f, 0.25f, -0.50f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, -0.50f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, -0.25f, -0.50f+0.10f,   1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        0.25f, -0.25f, -0.50f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, -0.50f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.25f, -0.50f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        // face # 2                     // 6 FRONT FACE
-        -0.25f, -0.25f, 0.00f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-        -0.25f, 0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 1.0f,
-
-        0.25f, 0.25f, 0.00f+0.10f,      1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-        -0.25f, 0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 1.0f,
-        0.25f, -0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-
-        // face # 3                     // 12   LEFT FACE
-        -0.25f, -0.25f, 0.00f+0.10f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-        -0.25f, 0.25f, -0.50f+0.10f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-        -0.25f, -0.25f, -0.50f+0.10f,   1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.0f,
-
-        -0.25f, 0.25f, 0.00f+0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.5f,
-        -0.25f, 0.25f, -0.50f+0.10f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-        -0.25f, -0.25f, 0.00f+0.10f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-
-        // face # 4                     // 18 RIGHT FACE
-        0.25f, -0.25f, -0.50f+0.10f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.0f,
-        0.25f, 0.25f, -0.50f+0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-        0.25f, -0.25f, 0.00f+0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        0.25f, -0.25f, 0.00f+0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.25f, -0.50f+0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-        0.25f, 0.25f, 0.00f+0.10f,      1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.5f,
-
-        // face # 5                     // 24 BOTTOM FACE
-        0.25f, -0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, -0.25f, -0.50f+0.10f,   1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, -0.50f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        -0.25f, -0.25f, 0.00f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, -0.25f, -0.50f+0.10f,   1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        // face # 6                     // 30 TOP FACE
-        -0.25f, 0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.25f, -0.50f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, -0.50f+0.10f,    1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        0.25f, 0.25f, 0.00f+0.10f,      1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.25f, -0.50f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, 0.00f+0.10f,     1.0f, 0.3f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-
-        // square # 2, green
-
-        // face # 1                     // 36   BACK FACE
-        -0.25f, 0.65f+0.25f, -0.40f,    0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-        0.25f, 0.15f+0.25f, -0.40f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.15f+0.25f, -0.40f,    0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-
-        0.25f, 0.15f+0.25f, -0.40f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.65f+0.25f, -0.40f,    0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-        0.25f, 0.65f+0.25f, -0.40f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 1.0f,
-
-        // face # 2                     // 42   FRONT FACE
-        -0.25f, 0.15f+0.25f, 0.10f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.15f+0.25f, 0.10f,      0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-        -0.25f, 0.65f+0.25f, 0.10f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 1.0f,
-
-        0.25f, 0.65f+0.25f, 0.10f,      0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-        -0.25f, 0.65f+0.25f, 0.10f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 1.0f,
-        0.25f, 0.15f+0.25f, 0.10f,      0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-
-        // face # 3                     // 48   LEFT FACE
-        -0.25f, 0.15f+0.25f, 0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.5f,
-        -0.25f, 0.65f+0.25f, -0.40f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 1.0f,
-        -0.25f, 0.15f+0.25f, -0.40f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-
-        -0.25f, 0.65f+0.25f, 0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-        -0.25f, 0.65f+0.25f, -0.40f,    1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 1.0f,
-        -0.25f, 0.15f+0.25f, 0.10f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.5f,
-
-        // face # 4                     // 54   RIGHT FACE
-        0.25f, 0.15f+0.25f, -0.40f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-        0.25f, 0.65f+0.25f, -0.40f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 1.0f,
-        0.25f, 0.15f+0.25f, 0.10f,      1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.5f,
-
-        0.25f, 0.15f+0.25f, 0.10f,      1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.5f,
-        0.25f, 0.65f+0.25f, -0.40f,     1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 1.0f,
-        0.25f, 0.65f+0.25f, 0.10f,      1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 1.0f,
-
-        // face # 5                     // 60   BOTTOM FACE
-        0.25f, 0.15f+0.25f, 0.10f,      0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.15f+0.25f, -0.40f,    0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.15f+0.25f, -0.40f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        -0.25f, 0.15f+0.25f, 0.10f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.15f+0.25f, -0.40f,    0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.15f+0.25f, 0.10f,      0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        // face # 6                     // 66   TOP FACE
-        -0.25f, 0.65f+0.25f, 0.10f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.65f+0.25f, -0.40f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.65f+0.25f, -0.40f,    0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        0.25f, 0.65f+0.25f, 0.10f,      0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.65f+0.25f, -0.40f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.65f+0.25f, 0.10f,     0.3f, 1.0f, 0.3f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        // square # 3
-
-        // face # 1                     // 78   BACK FACE
-        -0.25f, 0.25f, -1.00f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-        0.25f, -0.25f, -1.00f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, -0.25f, -1.00f,         0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-
-        0.25f, -0.25f, -1.00f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, -1.00f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-        0.25f, 0.25f, -1.00f,           0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 1.0f,
-
-        // face # 1                     // 72   FRONT FACE
-        -0.25f, -0.25f, -0.50f,         0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, -0.50f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, -0.50f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        0.25f, 0.25f, -0.50f,           0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, -0.50f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, -0.50f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        // face # 4                     // 90   LEFT FACE
-        -0.25f, 0.25f, -0.50f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-        -0.25f, 0.25f, -1.00f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.5f,
-        -0.25f, -0.25f, -0.50f,         1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.0f,
-
-        -0.25f, -0.25f, -1.00f,         1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, -0.25f, -0.50f,         1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.0f,
-        -0.25f, 0.25f, -1.00f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.5f,
-
-        // face # 5                     // 96   RIGHT FACE
-        0.25f, -0.25f, -0.50f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.0f,
-        0.25f, 0.25f, -1.00f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.5f,
-        0.25f, 0.25f, -0.50f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.5f,
-        
-        0.25f, 0.25f, -1.00f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.5f,
-        0.25f, -0.25f, -0.50f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   0.5f, 0.0f,
-        0.25f, -0.25f, -1.00f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-        // face # 3                     // 84   BOTTOM FACE
-        -0.25f, -0.25f, -0.50f,         0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, -0.25f, -1.00f,         0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, -0.50f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        0.25f, -0.25f, -1.00f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, -0.25f, -0.50f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, -0.25f, -1.00f,         0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        // face # 6                     // 102  TOP FACE
-        -0.25f, 0.25f, -0.50f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.25f, -0.50f,           0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, -1.00f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-
-        0.25f, 0.25f, -1.00f,           0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        -0.25f, 0.25f, -1.00f,          0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        0.25f, 0.25f, -0.50f,           0.3f, 0.3f, 1.0f,       0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-        
-};
-
 float fenceVertices[] =
     {
-        // position (x,y,z)             color (r,g,b)               normal (x,y,z)      texture(s,t)
+        // position (x,y,z)             color (r,g,b)           normal (x,y,z)      texture(s,t)
 
-        //Cube Base                     //0
-        0.00f, 0.00f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 0.0f,
-        0.00f, 0.00f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
-        0.28f, 0.00f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 0.0f,
-        0.28f, 0.00f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 0.0f,
+        //Picket Cube, Base             //0
+        -0.14f, 0.00f, 0.07f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 0.0f,
+        -0.14f, 0.00f, -0.07f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+        0.14f, 0.00f, 0.07f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 0.0f,
+        0.14f, 0.00f, -0.07f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 0.0f,
 
-        //Top Cube                      //4
-        0.00f, 1.12f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 1.0f,
-        0.00f, 1.12f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 1.0f,
-        0.28f, 1.12f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 1.0f,
-        0.28f, 1.12f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 1.0f,
+        //Picket Cube, Top              //4
+        -0.14f, 1.12f, 0.07f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 1.0f,
+        -0.14f, 1.12f, -0.07f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 1.0f,
+        0.14f, 1.12f, 0.07f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 1.0f,
+        0.14f, 1.12f, -0.07f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 1.0f,
 
-        //Tip                           //8
-        0.14f, 1.40f, 0.00f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
-        0.14f, 1.40f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+        //Picket Tip                    //8
+        0.00f, 1.40f, 0.07f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+        0.00f, 1.40f, -0.07f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+
+
+        //Lower Plank, Base             //10
+        -0.50f, 0.28f, 0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 0.0f,
+        -0.50f, 0.28f, -0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 0.45f,
+        0.50f, 0.28f, 0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 0.0f,
+        0.50f, 0.28f, -0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 0.45f,
+    
+        //Lower Plank, Top              //14
+        -0.50f, 0.42f, 0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 0.15f,
+        -0.50f, 0.42f, -0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 0.30f,
+        0.50f, 0.42f, 0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 0.15f,
+        0.50f, 0.42f, -0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 0.30f,
+
+
+        //Upper Plank, Base             //18
+        -0.50f, 0.7f, 0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 0.70f,
+        -0.50f, 0.7f, -0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 1.0f,
+        0.50f, 0.7f, 0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 0.70f,
+        0.50f, 0.7f, -0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 1.0f,
+    
+        //Upper Plank, Top              //22
+        -0.50f, 0.84f, 0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 0.80f,
+        -0.50f, 0.84f, -0.06f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.50f, 0.90f,
+        0.50f, 0.84f, 0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 0.80f,
+        0.50f, 0.84f, -0.06f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.50f, 0.90f,
     };
 
 GLuint fenceIndices[] =
-{
-    //Base
-    0,1,2,
-    3,2,1,
-    //Front Face Cube
-    0,2,4,
-    2,6,4,
-    //Back Face Cube
-    7,3,1,
-    1,5,7,
-    //Left Face Cube
-    5,1,0,
-    0,4,5,
-    //Right Face Cube
-    2,3,6,
-    7,6,3,
+    {
+        //Picket Base
+        0,1,2,
+        3,2,1,
+        //Front Face Picket Cube
+        0,2,4,
+        2,6,4,
+        //Back Face Picket Cube
+        7,3,1,
+        1,5,7,
+        //Left Face Picket Cube
+        5,1,0,
+        0,4,5,
+        //Right Face Picket Cube
+        2,3,6,
+        7,6,3,
+
+        //Front Face Tip
+        6,8,4,
+        //Left Face Tip
+        9,5,4,
+        4,8,9,
+        //Right Face Tip
+        6,7,9,
+        9,8,6,
+        //Back Face Tip
+        5,9,7,
+
+        //Lower Plank Base
+        10,11,12,
+        13,12,11,
+        //Lower Plank Top
+        16,15,14,
+        15,16,17,
+        //Lower Plank Front Face
+        10,12,14,
+        12,16,14,
+        //Lower Plank Back Face
+        17,13,11,
+        11,15,17,
+        // //Lower Plank Left Face
+        // 15,11,10,
+        // 10,14,15,
+        // //Lower Plank Right Face
+        // 12,13,16,
+        // 17,16,13,
+
+        //Upper Plank Base
+        18,19,20,
+        21,20,19,
+        //Upper Plank Top
+        24,23,22,
+        23,24,25,
+        //Upper Plank Front Face
+        18,20,22,
+        20,24,22,
+        //Upper Plank Back Face
+        25,21,19,
+        19,23,25,
+        // //Upper Plank Left Face
+        // 23,19,18,
+        // 18,22,23,
+        // //Upper Plank Right Face
+        // 20,21,24,
+        // 25,24,21,
+    };
 
 
-    //Front Face Tip
-    6,8,4,
-    //Left Face Tip
-    9,5,4,
-    4,8,9,
-    //Right Face Tip
-    6,7,9,
-    9,8,6,
-    //Back Face Tip
-    5,9,7,
-};
+float pillarVertices[] =
+    {
+        // position (x,y,z)             color (r,g,b)           normal (x,y,z)      texture(s,t)
+
+        //Pillar Cube, Base             //0
+        -0.14f, 0.00f, 0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 0.0f,
+        -0.14f, 0.00f, -0.14f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+        0.14f, 0.00f, 0.14f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 0.0f,
+        0.14f, 0.00f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 0.0f,
+
+        //Pillar Cube, Top              //4
+        -0.14f, 1.12f, 0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.25f, 1.0f,
+        -0.14f, 1.12f, -0.14f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 1.0f,
+        0.14f, 1.12f, 0.14f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.75f, 1.0f,
+        0.14f, 1.12f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 1.0f,
+
+        //Pillar Cap, Base              //8
+        -0.28f, 1.12f, 0.28f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    -0.10f, -0.10f,
+        -0.28f, 1.12f, -0.28f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    -0.10f, 1.1f,
+        0.28f, 1.12f, 0.28f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.1f, -0.10f,
+        0.28f, 1.12f, -0.28f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.1f, 1.1f,
+
+        //Pillar Cap, Middle            //12
+        -0.28f, 1.19f, 0.28f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 0.0f,
+        -0.28f, 1.19f, -0.28f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.0f, 1.0f,
+        0.28f, 1.19f, 0.28f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 0.0f,
+        0.28f, 1.19f, -0.28f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    1.0f, 1.0f,
+
+        //Pillar Cap, Top               //16
+        -0.14f, 1.30f, 0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.40f, 0.40f,
+        -0.14f, 1.30f, -0.14f,          1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.40f, 0.60f,
+        0.14f, 1.30f, 0.14f,            1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.60f, 0.40f,
+        0.14f, 1.30f, -0.14f,           1.0f, 1.0f, 1.0f,       0.0f, 0.0f, 0.0f,    0.60f, 0.60f,
+    };
+
+GLuint pillarIndices[] =
+    {
+        //Pillar Base
+        0,1,2,
+        3,2,1,
+        //Front Face Pillar Cube
+        0,2,4,
+        2,6,4,
+        //Back Face Pillar Cube
+        7,3,1,
+        1,5,7,
+        //Left Face Pillar Cube
+        5,1,0,
+        0,4,5,
+        //Right Face Pillar Cube
+        2,3,6,
+        7,6,3,
+
+        //Cap Base 
+        //Left
+        4,8,9,
+        9,5,4,
+        //Back
+        5,9,11,
+        11,7,5,
+        //Right
+        6,7,11,
+        11,10,6,
+        //Front
+        4,6,10,
+        10,8,4,
+
+        //Front Face Pillar Cap
+        8,10,12,
+        14,12,10,
+        //Back Face Pillar Cap
+        15,11,9,
+        9,13,15,
+        //Left Face Pillar Cap
+        13,9,8,
+        8,12,13,
+        //Right Face Pillar Cap
+        10,11,14,
+        15,14,11,
+
+        //Cap Slant 
+        //Left
+        12,16,17,
+        17,13,12,
+        //Back
+        13,17,19,
+        19,15,13,
+        //Right
+        19,18,15,
+        14,15,18,
+        //Front
+        18,16,14,
+        12,14,16,
+
+        //Cap Top
+        16,18,17,
+        17,18,19,
+    };
 
 
-
-
-
-float vertices2[] =
+float axeVertices[] =
     {
         // position (x,y,z)             color (r,g,b)           normal (x,y,z)
 
@@ -318,7 +305,7 @@ float vertices2[] =
 
 };
 
-GLuint indices[] =
+GLuint axeIndices[] =
     {
         //Base shaft
         2, 1, 0,
@@ -396,38 +383,6 @@ GLuint indices[] =
 
 void getNormals()
 {   
-    //FOR CUBES
-    // for(int i = 0; i < static_cast<int>(sizeof(vertices)/(sizeof(float))); i+=33){
-    //     glm::vec3 vertexA = glm::vec3(vertices[i], vertices[i+1], vertices[i+2]);
-    //     //std::cout << "VertexA: " << vertices[i] << ", " << vertices[i+1] << ", " << vertices[i+2] << std::endl;
-    //     glm::vec3 vertexB = glm::vec3(vertices[i+11], vertices[i+12], vertices[i+13]);
-    //     glm::vec3 vertexC = glm::vec3(vertices[i+22], vertices[i+23], vertices[i+24]);
-
-    //     glm::vec3 differenceBA = vertexB - vertexA;
-    //     //std::cout << "B-A: " << differenceBA.x << ", " << differenceBA.y << ", " << differenceBA.z << std::endl;
-    //     glm::vec3 differenceCA = vertexC - vertexA;
-        
-
-    //     glm::vec3 crossProduct = glm::cross(differenceBA, differenceCA);
-    //     //std::cout << "Cross: " << crossProduct.x << ", " << crossProduct.y << ", " << crossProduct.z << std::endl;
-
-    //     glm::vec3 normalVector = glm::normalize(crossProduct);
-    //     //std::cout << "normalVector: " << normalVector.x << ", " << normalVector.y << ", " << normalVector.z << std::endl;
-
-    //     //Normal of Vertex A
-    //     vertices[i+6] = normalVector.x;
-    //     vertices[i+7] = normalVector.y;
-    //     vertices[i+8] = normalVector.z;
-    //     //Normal of Vertex B
-    //     vertices[i+17] = normalVector.x;
-    //     vertices[i+18] = normalVector.y;
-    //     vertices[i+19] = normalVector.z;
-    //     //Normal of Vertex C
-    //     vertices[i+28] = normalVector.x;
-    //     vertices[i+29] = normalVector.y;
-    //     vertices[i+30] = normalVector.z;
-    //     //std::cout << "Triangle " << i/27 << ": " << vertices[i+6] << ", " << vertices[i+7] << ", " << vertices[i+8] << std::endl;
-    // };
 
 
     for(int i = 0; i < static_cast<int>(sizeof(fenceIndices)/(sizeof(int))); i+=3){
@@ -465,22 +420,20 @@ void getNormals()
         fenceVertices[vertexC+6] = normalVector.x;
         fenceVertices[vertexC+7] = normalVector.y;
         fenceVertices[vertexC+8] = normalVector.z;
-        //std::cout << "Triangle " << i/27 << ": " << vertices[i+6] << ", " << vertices[i+7] << ", " << vertices[i+8] << std::endl;
+        // std::cout << "Triangle " << i/3 << ": " << fenceVertices[vertexA] << ", " << fenceVertices[vertexB] << ", " << fenceVertices[vertexC] << std::endl;
     };
 
-
-
-    for(int i = 0; i < static_cast<int>(sizeof(indices)/(sizeof(int))); i+=3){
+    for(int i = 0; i < static_cast<int>(sizeof(pillarIndices)/(sizeof(int))); i+=3){
         
-        //*9 because each vertex has 9 elements
-        int vertexA = indices[i]*9;
-        int vertexB = indices[i+1]*9;
-        int vertexC = indices[i+2]*9;
+        //*11 because each vertex has 11 elements
+        int vertexA = pillarIndices[i]*11;
+        int vertexB = pillarIndices[i+1]*11;
+        int vertexC = pillarIndices[i+2]*11;
 
-        glm::vec3 vectorA = glm::vec3(vertices2[vertexA], vertices2[vertexA+1], vertices2[vertexA+2]);
+        glm::vec3 vectorA = glm::vec3(pillarVertices[vertexA], pillarVertices[vertexA+1], pillarVertices[vertexA+2]);
         // std::cout << "VertexA: " << fenceVertices[i] << ", " << fenceVertices[i+1] << ", " << fenceVertices[i+2] << std::endl;
-        glm::vec3 vectorB = glm::vec3(vertices2[vertexB], vertices2[vertexB+1], vertices2[vertexB+2]);
-        glm::vec3 vectorC = glm::vec3(vertices2[vertexC], vertices2[vertexC+1], vertices2[vertexC+2]);
+        glm::vec3 vectorB = glm::vec3(pillarVertices[vertexB], pillarVertices[vertexB+1], pillarVertices[vertexB+2]);
+        glm::vec3 vectorC = glm::vec3(pillarVertices[vertexC], pillarVertices[vertexC+1], pillarVertices[vertexC+2]);
 
         glm::vec3 differenceBA = vectorB - vectorA;
         //std::cout << "B-A: " << differenceBA.x << ", " << differenceBA.y << ", " << differenceBA.z << std::endl;
@@ -494,48 +447,70 @@ void getNormals()
         //std::cout << "normalVector: " << normalVector.x << ", " << normalVector.y << ", " << normalVector.z << std::endl;
 
         //Normal of Vertex A
-        vertices2[vertexA+6] = normalVector.x;
-        vertices2[vertexA+7] = normalVector.y;
-        vertices2[vertexA+8] = normalVector.z;
+        pillarVertices[vertexA+6] = normalVector.x;
+        pillarVertices[vertexA+7] = normalVector.y;
+        pillarVertices[vertexA+8] = normalVector.z;
         //Normal of Vertex B
-        vertices2[vertexB+6] = normalVector.x;
-        vertices2[vertexB+7] = normalVector.y;
-        vertices2[vertexB+8] = normalVector.z;
+        pillarVertices[vertexB+6] = normalVector.x;
+        pillarVertices[vertexB+7] = normalVector.y;
+        pillarVertices[vertexB+8] = normalVector.z;
         //Normal of Vertex C
-        vertices2[vertexC+6] = normalVector.x;
-        vertices2[vertexC+7] = normalVector.y;
-        vertices2[vertexC+8] = normalVector.z;
+        pillarVertices[vertexC+6] = normalVector.x;
+        pillarVertices[vertexC+7] = normalVector.y;
+        pillarVertices[vertexC+8] = normalVector.z;
+        // std::cout << "Triangle " << i/3 << ": " << pillarVertices[vertexA] << ", " << pillarVertices[vertexB] << ", " << pillarVertices[vertexC] << std::endl;
+    };
+
+
+    for(int i = 0; i < static_cast<int>(sizeof(axeIndices)/(sizeof(int))); i+=3){
+        
+        //*9 because each vertex has 9 elements
+        int vertexA = axeIndices[i]*9;
+        int vertexB = axeIndices[i+1]*9;
+        int vertexC = axeIndices[i+2]*9;
+
+        glm::vec3 vectorA = glm::vec3(axeVertices[vertexA], axeVertices[vertexA+1], axeVertices[vertexA+2]);
+        // std::cout << "VertexA: " << fenceVertices[i] << ", " << fenceVertices[i+1] << ", " << fenceVertices[i+2] << std::endl;
+        glm::vec3 vectorB = glm::vec3(axeVertices[vertexB], axeVertices[vertexB+1], axeVertices[vertexB+2]);
+        glm::vec3 vectorC = glm::vec3(axeVertices[vertexC], axeVertices[vertexC+1], axeVertices[vertexC+2]);
+
+        glm::vec3 differenceBA = vectorB - vectorA;
+        //std::cout << "B-A: " << differenceBA.x << ", " << differenceBA.y << ", " << differenceBA.z << std::endl;
+        glm::vec3 differenceCA = vectorC - vectorA;
+        
+
+        glm::vec3 crossProduct = glm::cross(differenceBA, differenceCA);
+        //std::cout << "Cross: " << crossProduct.x << ", " << crossProduct.y << ", " << crossProduct.z << std::endl;
+
+        glm::vec3 normalVector = glm::normalize(crossProduct);
+        //std::cout << "normalVector: " << normalVector.x << ", " << normalVector.y << ", " << normalVector.z << std::endl;
+
+        //Normal of Vertex A
+        axeVertices[vertexA+6] = normalVector.x;
+        axeVertices[vertexA+7] = normalVector.y;
+        axeVertices[vertexA+8] = normalVector.z;
+        //Normal of Vertex B
+        axeVertices[vertexB+6] = normalVector.x;
+        axeVertices[vertexB+7] = normalVector.y;
+        axeVertices[vertexB+8] = normalVector.z;
+        //Normal of Vertex C
+        axeVertices[vertexC+6] = normalVector.x;
+        axeVertices[vertexC+7] = normalVector.y;
+        axeVertices[vertexC+8] = normalVector.z;
         //std::cout << "Triangle " << i/27 << ": " << vertices[i+6] << ", " << vertices[i+7] << ", " << vertices[i+8] << std::endl;
     };
 };
 
 
-GLuint vbo, vbo2;
-GLuint vao, vao2; // 1 vao, ebo, vbo
-GLuint ebo, ebo2;
+GLuint vbo, vbo2, vbo3;
+GLuint vao, vao2, vao3;
+GLuint ebo, ebo2, ebo3;
 GLuint shader;
-GLuint texture;
+GLuint brownWoodTexture, ebonyWoodTexture;
 
 bool setup()
 {
     getNormals();
-    //For Cubes
-    // glGenVertexArrays(1, &vao);
-    // glGenBuffers(1, &vbo);
-    // // glGenBuffers(1, &ebo);
-    // glBindVertexArray(vao);
-    // glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
-    // glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (3 * sizeof(float)));
-    // glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (6 * sizeof(float)));
-    // glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (9 * sizeof(float)));
-
-    // glEnableVertexAttribArray(0);
-    // glEnableVertexAttribArray(1);
-    // glEnableVertexAttribArray(2);
-    // glEnableVertexAttribArray(3);
 
     //For fenceIndices
     glGenVertexArrays(1, &vao);
@@ -557,15 +532,35 @@ bool setup()
     glEnableVertexAttribArray(2);
     glEnableVertexAttribArray(3);
 
-    //For vertices2
+    //For pillarIndices
+    glGenVertexArrays(1, &vao3);
+    glGenBuffers(1, &vbo3);
+    glGenBuffers(1, &ebo3);
+    glBindVertexArray(vao3);
+    glBindBuffer(GL_ARRAY_BUFFER, vbo3);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(pillarVertices), pillarVertices, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo3);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(pillarIndices), pillarIndices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (3 * sizeof(float)));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (6 * sizeof(float)));
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (9 * sizeof(float)));
+
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
+    glEnableVertexAttribArray(3);
+
+    //For axeVertices
     glGenVertexArrays(1, &vao2);
     glGenBuffers(1, &vbo2);
     glGenBuffers(1, &ebo2);
     glBindVertexArray(vao2);
     glBindBuffer(GL_ARRAY_BUFFER, vbo2);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices2), vertices2, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(axeVertices), axeVertices, GL_STATIC_DRAW);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo2);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(axeIndices), axeIndices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*) 0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*) (3 * sizeof(float)));
@@ -577,9 +572,14 @@ bool setup()
 
     shader = gdevLoadShader("finalproject.vs", "finalproject.fs");
     if (!shader) return false;
-        
-    texture = gdevLoadTexture("wood.jpg", GL_REPEAT, true, true);
-    if (! texture) return false;
+    
+    //https://www.freepik.com/free-photo/
+    //brown-wooden-flooring_4246371.htm#query=wood%20texture&position=3&from_view=keyword&track=ais&uuid=7d00bbbe-cafd-4a10-b4d9-581342a45521
+    brownWoodTexture = gdevLoadTexture("brown-wood.jpg", GL_REPEAT, true, true);
+    if (! brownWoodTexture) return false;
+
+    ebonyWoodTexture = gdevLoadTexture("ebony-wood.jpg", GL_MIRRORED_REPEAT, true, true);
+    if (! ebonyWoodTexture) return false;
 
     return true;
 }
@@ -591,7 +591,7 @@ void render()
 
     glUseProgram(shader);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    glBindTexture(GL_TEXTURE_2D, brownWoodTexture);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -634,9 +634,9 @@ void render()
     else{
         pulse = 1;
     }
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-10.2f, 0.0f, -0.45f));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(pulse, pulse, pulse));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.2f, 0.0f, -0.45f));
-    // modelMatrix = glm::rotate(modelMatrix, glm::radians( (float) - 180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    // modelMatrix = glm::rotate(modelMatrix, glm::radians( ( float) - 180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
     glm::mat4 normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
@@ -651,7 +651,7 @@ void render()
     //Draw second model at the right, set model matrix back
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(0.7f, 0.7f, 0.7f));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.5f, 0.0f, 0.5f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-13.5f, 0.0f, 0.5f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*20), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
@@ -663,154 +663,208 @@ void render()
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 
-
     /*
     ================
     =====FENCES=====
     ================
     */
 
+    //LEFT
     //1
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.0f, 1.0f));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-4.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, 0.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 
     // normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
     // glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //2
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-4.0f, 0.0f, -1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, -1.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //3
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-4.0f, 0.0f, -2.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, -2.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //4
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-4.0f, 0.0f, -3.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, -3.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //5
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-4.0f, 0.0f, -4.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, -4.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //6
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-4.0f, 0.0f, -5.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, -5.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 
-
+    //BACK
     //7
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.0f, 0.0f, -6.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.0f, 0.0f, -5.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //8
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-2.0f, 0.0f, -6.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-2.0f, 0.0f, -5.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //9
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.0f, -6.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.0f, -5.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //10
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, -6.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, -5.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //11
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.0f, 0.0f, -6.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.0f, 0.0f, -5.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //12
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(2.0f, 0.0f, -6.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(2.0f, 0.0f, -5.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //13
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.0f, 0.0f, -6.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.0f, 0.0f, -5.5f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 
-
+    //RIGHT
     //14
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(4.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, 0.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //15
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(4.0f, 0.0f, -1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, -1.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //16
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(4.0f, 0.0f, -2.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, -2.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //17
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(4.0f, 0.0f, -3.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, -3.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //18
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(4.0f, 0.0f, -4.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, -4.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
     //19
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(4.0f, 0.0f, -5.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, -5.0f+0.14f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) + 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
     
 
 
+    //FRONT
+    //20
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.0f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //21
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-2.0f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //22
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(2.0f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //23
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.0f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+
+
+
+    /*
+    ================
+    =====PILLARS=====
+    ================
+    */
+    glBindTexture(GL_TEXTURE_2D, ebonyWoodTexture);
+    //Back Left
+    glBindVertexArray(vao3);
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.2f, 1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, -5.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //Back Right
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.2f, 1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, -5.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //Front Left
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.2f, 1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //Front Right
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.2f, 1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(3.64f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //Entrance Left
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.5f, 1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-1.5f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    //Entrance Right
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.5f, 1.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.5f, 0.0f, 0.5f+0.14f+0.14f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+
 
     //Drawing the axe
     glBindVertexArray(vao2);
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-2.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(-12.0f, 0.0f, 0.0f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 60.0f), glm::vec3(0.0f, 0.0f, 1.0f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*57.5f), glm::vec3(0.0f, 0.0f, 1.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
@@ -818,7 +872,7 @@ void render()
     normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
     glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, sizeof(axeIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 }
 
 //Source: https://www.youtube.com/watch?v=AWM4CUfffos
