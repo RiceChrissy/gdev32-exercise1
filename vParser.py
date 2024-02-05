@@ -4,6 +4,7 @@ v = [] #list of sets of coordinates of shape vertices
 vn = [] #list of sets of vertex normals
 f = [] #list of faces
 finalVertices = []
+finalIndices = []
 
 
 for line in objfile:
@@ -25,12 +26,22 @@ for line in objfile:
         if("f" in x):
             x.remove("f")
         y = [int(faces) for faces in x]
+
+        #creating indices
+
+        finalIndices.append(y[0])
+        finalIndices.append(y[2])
+        finalIndices.append(y[4])
+        finalIndices.append(y[1])
+        finalIndices.append(y[3])
+        finalIndices.append(y[5])
         f.append(y)
-                
+
+
 def appendColor():
-    finalVertices.append(1)
-    finalVertices.append(1)
-    finalVertices.append(0)
+    finalVertices.append(str(1) + '.0')
+    finalVertices.append(str(1) + '.0')
+    finalVertices.append(str(0) + '.0')
 
 for faces in f:
     fv1_index = faces[0]
@@ -64,9 +75,18 @@ for faces in f:
 with open('chikipi.txt','w') as chikipi:
     count = 0
     for e in finalVertices:
-        chikipi.write(str(e))
+        chikipi.write(str(e) + 'f')
         count+=1
         chikipi.write(', ')
         if(count == 9):
             chikipi.write('\n')
             count=0
+
+with open('chikipi_Indices.txt', 'w') as cIndices:
+    count = 0
+    for ind in finalIndices:
+        cIndices.write(str(ind-1) + ', ')
+        count+=1
+        if(count == 3):
+            count = 0
+            cIndices.write('\n')
