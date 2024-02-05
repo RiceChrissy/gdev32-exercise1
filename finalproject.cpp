@@ -14,10 +14,15 @@ RIGHT_SHIFT - Increase Z-axis Value
 RIGHT_CTRL - Decrease Z-axis Value
 */
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <list>
+#include <vector>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <gdev.h>
+using namespace std;
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
@@ -318,6 +323,52 @@ float vertices2[] =
 
 };
 
+vector<float> chikipi_v;
+vector<float> chikipi_vn;
+vector<float> chikipi_f;
+
+void parseVertices(string objfile){
+    string line;
+    string v, x, y, z;
+    ifstream objectFile(objfile);
+    int vcount = 0;
+    int vncount = 0;
+    int fcount = 0;
+    while (!objectFile.eof()) {
+        getline(objectFile, line);
+        istringstream lstream(line);
+        if(line[0] == 'v' && line[1] == ' '){
+            objectFile >> v >> x >> y >> z;
+            chikipi_v.push_back(stof(x));
+            chikipi_v.push_back(stof(y));
+            chikipi_v.push_back(stof(z));
+            vcount++;
+        }
+        if(line[0] == 'v' && line[1] == 'n'){
+            objectFile >> v >> x >> y >> z;
+            chikipi_v.push_back(stof(x));
+            chikipi_v.push_back(stof(y));
+            chikipi_v.push_back(stof(z));
+            vncount++;
+        }
+        /*
+        else if(line[0] == 'f' && line[1] == ' '){
+            istringstream lstream(line);
+            objectFile >> v >> x >> y >> z;
+            chikipi_v.push_back(stof(x));
+            chikipi_v.push_back(stof(y));
+            chikipi_v.push_back(stof(z));
+            fcount++;
+        }
+        */
+        cout << "coords: " << x << " " << y << " " << z << endl;
+        cout << "v count: " << vcount << endl;
+        cout << "vn count: " << vncount << endl;
+        cout << "f count: " << fcount << endl;
+    }
+}
+
+
 GLuint indices[] =
     {
         //Base shaft
@@ -519,6 +570,7 @@ GLuint texture;
 bool setup()
 {
     getNormals();
+    parseVertices("chikipi.obj");
     //For Cubes
     // glGenVertexArrays(1, &vao);
     // glGenBuffers(1, &vbo);
