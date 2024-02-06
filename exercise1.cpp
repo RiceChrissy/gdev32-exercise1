@@ -13948,86 +13948,12 @@ float chikipiVertices[] =
 
     };
 
-GLuint indices[] =
-    {
-        //Base shaft
-        2, 1, 0,
-        2, 3, 1,
-
-        //Shaft point #1
-        4, 0, 1,
-        4, 1, 5,
-        6, 2, 0,
-        6, 0, 4,
-        7, 3, 2,
-        7, 2, 6,
-        5, 1, 3,
-        5, 3, 7,
-
-        //Shaft point #2
-        8, 4, 5,
-        8, 5, 9,
-        10, 6, 4,
-        10, 4, 8,
-        11, 7, 6,
-        11, 6, 10,
-        9, 5, 7,
-        9, 7, 11,
-
-        //Shaft point #3
-        12, 8, 9,
-        12, 9, 13,
-        14, 10, 8,
-        14, 8, 12,
-        15, 11, 10,
-        15, 10, 14,
-        13, 9, 11,
-        13, 11, 15,
-
-        //Shaft point top
-        14, 12, 13,
-        14, 13, 15,
-
-        //Axe head cube
-        //Front face
-        21, 17, 19,
-        21, 19, 23,
-        //Left face
-        20, 16, 17,
-        20, 17, 21,
-        //Back face
-        22, 18, 16,
-        22, 16, 20,
-        //Right face
-        23, 19, 18,
-        23, 18, 22,
-        //Bottom Face
-        16, 19, 17,
-        16, 18, 19,
-        //Top Face
-        20, 21, 23,
-        20, 23, 22,
-
-        //Axe head blade
-        //Top & Bottom face
-        22, 23, 24,
-        18, 26, 19,
-        //Front & Back face
-        24, 23, 19,
-        24, 19, 26,
-        24, 18, 22,
-        24, 26, 18,
-        //Tip Front & Back face 
-        24, 26, 25,
-        24, 25, 26,
-
-};
 
 
 void getNormals()
 {   
 
-
+    //Getting normals for the fence model
     for(int i = 0; i < static_cast<int>(sizeof(fenceIndices)/(sizeof(int))); i+=3){
         
         //*11 because each vertex has 11 elements
@@ -14066,6 +13992,7 @@ void getNormals()
         // std::cout << "Triangle " << i/3 << ": " << fenceVertices[vertexA] << ", " << fenceVertices[vertexB] << ", " << fenceVertices[vertexC] << std::endl;
     };
 
+    //Getting normals for the pillar model
     for(int i = 0; i < static_cast<int>(sizeof(pillarIndices)/(sizeof(int))); i+=3){
         
         //*11 because each vertex has 11 elements
@@ -14106,9 +14033,9 @@ void getNormals()
 };
 
 
-GLuint vbo, vbo2, vbo3, vbo4;
-GLuint vao, vao2, vao3, vao4; // 1 vao, ebo, vbo
-GLuint ebo, ebo2, ebo3;
+GLuint fenceVbo, pillarVbo, chikipiVbo;
+GLuint fenceVao, pillarVao, chikipiVao;
+GLuint fenceEbo, pillarEbo;
 GLuint shader;
 GLuint brownWoodTexture, ebonyWoodTexture;
 
@@ -14117,13 +14044,13 @@ bool setup()
     getNormals();
 
     //For fenceIndices
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ebo);
-    glBindVertexArray(vao);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glGenVertexArrays(1, &fenceVao);
+    glGenBuffers(1, &fenceVbo);
+    glGenBuffers(1, &fenceEbo);
+    glBindVertexArray(fenceVao);
+    glBindBuffer(GL_ARRAY_BUFFER, fenceVbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(fenceVertices), fenceVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, fenceEbo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(fenceIndices), fenceIndices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
@@ -14137,13 +14064,13 @@ bool setup()
     glEnableVertexAttribArray(3);
 
     //For pillarIndices
-    glGenVertexArrays(1, &vao3);
-    glGenBuffers(1, &vbo3);
-    glGenBuffers(1, &ebo3);
-    glBindVertexArray(vao3);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo3);
+    glGenVertexArrays(1, &pillarVao);
+    glGenBuffers(1, &pillarVbo);
+    glGenBuffers(1, &pillarEbo);
+    glBindVertexArray(pillarVao);
+    glBindBuffer(GL_ARRAY_BUFFER, pillarVbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(pillarVertices), pillarVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo3);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pillarEbo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(pillarIndices), pillarIndices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
@@ -14157,10 +14084,10 @@ bool setup()
     glEnableVertexAttribArray(3);
 
     // Chikipi
-    glGenVertexArrays(1, &vao4);
-    glGenBuffers(1, &vbo4);
-    glBindVertexArray(vao4);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo4);
+    glGenVertexArrays(1, &chikipiVao);
+    glGenBuffers(1, &chikipiVbo);
+    glBindVertexArray(chikipiVao);
+    glBindBuffer(GL_ARRAY_BUFFER, chikipiVbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(chikipiVertices), chikipiVertices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*) 0);
@@ -14196,7 +14123,7 @@ void render()
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-    glBindVertexArray(vao);
+    glBindVertexArray(fenceVao);
 
     //Camera Controls
     float currentFrame = glfwGetTime();
@@ -14216,11 +14143,6 @@ void render()
     glm::mat4 projectionViewMatrix = projectionMatrix * viewMatrix;
     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"), 1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
 
-
-    //Draw first model
-    //MODEL MATRIX
-    glm::mat4 modelMatrix = glm::mat4(1.0f); //identity matrix
-
     float currentSin = sin(glfwGetTime());
     deltaPulse = currentSin - lastSin;
     lastSin = currentSin;
@@ -14235,6 +14157,11 @@ void render()
     else{
         pulse = 1;
     }
+
+    //REMOVE BEFORE SUBMITTING. Scaling model
+    //MODEL MATRIX
+    glm::mat4 modelMatrix = glm::mat4(1.0f); //identity matrix
+
     modelMatrix = glm::translate(modelMatrix, glm::vec3(-10.2f, 0.0f, -0.45f));
     modelMatrix = glm::scale(modelMatrix, glm::vec3(pulse, pulse, pulse));
     // modelMatrix = glm::rotate(modelMatrix, glm::radians( ( float) - 180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -14249,7 +14176,7 @@ void render()
     
 
 
-    //Draw second model at the right, set model matrix back
+    //REMOVE BEFORE SUBMITTING. Rotating fence
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(0.7f, 0.7f, 0.7f));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(-13.5f, 0.0f, 0.5f));
@@ -14422,7 +14349,7 @@ void render()
     */
     glBindTexture(GL_TEXTURE_2D, ebonyWoodTexture);
     //Back Left
-    glBindVertexArray(vao3);
+    glBindVertexArray(pillarVao);
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(1.0f, 1.2f, 1.0f));
     modelMatrix = glm::translate(modelMatrix, glm::vec3(-3.64f, 0.0f, -5.5f));
@@ -14461,27 +14388,17 @@ void render()
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
-
-    //Drawing the axe
-    glBindVertexArray(vao2);
+    //Chikipi
+    glBindVertexArray(chikipiVao);
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-12.0f, 0.0f, 0.0f));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - 60.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*57.5f), glm::vec3(0.0f, 0.0f, 1.0f));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-
-    normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
-
-    glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
-    //chikipi
-    glBindVertexArray(vao4);
-    modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, -4.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, -2.5f));
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*57.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+    //Resetting and translating model from the rotation point by 1.5 in x
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.5f, 0.0f, 0.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawArrays(GL_TRIANGLES,0, sizeof(chikipiVertices));
+
 }
 
 //Source: https://www.youtube.com/watch?v=AWM4CUfffos
