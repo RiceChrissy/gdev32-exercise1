@@ -29,6 +29,9 @@ for line in objfile:
 
         #creating indices
 
+        vertexIndices = [3]
+        normalIndices = [3]
+
         finalIndices.append(y[0])
         finalIndices.append(y[2])
         finalIndices.append(y[4])

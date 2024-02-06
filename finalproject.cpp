@@ -23395,7 +23395,7 @@ bool setup()
     glBindVertexArray(vao3);
     glBindBuffer(GL_ARRAY_BUFFER, vbo3);
     glBufferData(GL_ARRAY_BUFFER, sizeof(chikipiVertices), chikipiVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo2);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo3);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(chikipiIndices), chikipiIndices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*) 0);
@@ -23654,9 +23654,9 @@ void render()
     //chikipi
     glBindVertexArray(vao3);
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.0f, 0.0f));
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, -4.0f));
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-    glDrawElements(GL_TRIANGLES, sizeof(chikipiIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES,0, sizeof(chikipiVertices));
 }
 
 //Source: https://www.youtube.com/watch?v=AWM4CUfffos
