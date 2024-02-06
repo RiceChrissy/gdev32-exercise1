@@ -1,0 +1,5 @@
+All the necessary vertices should already be in the exercise1.cpp. The character we used is an attempted recreation of the Pal "Chikipi" from Palworld, due to poor Blender skills, the model looks rather demonic. We apologize for the inaccurate creation.
+
+The process we used to extract the vertices from the chikipi.obj file is outlined below. 
+1. created vParser.py which creates 2 files chikipi.txt and chikipiIndices.txt. (Final code no longer uses chikipiIndices.txt). This essentially extracts the vertices from the .obj file in a manner that is friendly to the current openGL implementation. We used python to make it easier for us to extract the vertices.
+2. We then copy pasted the resulting vertices and put it into an array in exercise1.cpp
