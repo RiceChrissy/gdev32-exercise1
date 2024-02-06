@@ -4,7 +4,7 @@ v = [] #list of sets of coordinates of shape vertices
 vn = [] #list of sets of vertex normals
 f = [] #list of faces
 finalVertices = []
-finalIndices = []
+finalIndices = [] # was actually not needed in the end, but left it here anyway
 
 
 for line in objfile:
@@ -28,9 +28,6 @@ for line in objfile:
         y = [int(faces) for faces in x]
 
         #creating indices
-
-        vertexIndices = [3]
-        normalIndices = [3]
 
         finalIndices.append(y[0])
         finalIndices.append(y[2])
