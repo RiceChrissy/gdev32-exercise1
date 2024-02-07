@@ -42,10 +42,12 @@ float lastFrame = 0.0f;
 
 float deltaPulse = 0.0f;
 float lastSin = 0.0f;
+glm::vec3 lightPosition = glm::vec3(-2.0f, 0.0f, 1.0f);
+
+//Camera Vectors
 glm::vec3 cameraPos = glm::vec3(0.0f, 2.0f, 5.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-glm::vec3 lightPosition = glm::vec3(-2.0f, 0.0f, 1.0f);
 
 float fenceVertices[] =
     {
@@ -154,12 +156,6 @@ GLuint fenceIndices[] =
         //Upper Plank Back Face
         25,21,19,
         19,23,25,
-        // //Upper Plank Left Face
-        // 23,19,18,
-        // 18,22,23,
-        // //Upper Plank Right Face
-        // 20,21,24,
-        // 25,24,21,
     };
 
 
@@ -14125,18 +14121,12 @@ void render()
     glEnable(GL_CULL_FACE);
     glBindVertexArray(fenceVao);
 
-    //Camera Controls
-    float currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
     //Light Controls
     glUniform3fv(glGetUniformLocation(shader, "lightPosition"), 1, glm::value_ptr(lightPosition));
 
 
     glm::mat4 projectionMatrix = glm::perspective(glm::radians(60.0f), (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
-
-    //We only have to specify a camera position, a target position and a vector that represents the up vector in world space
-                                    // camera position, target position, up vector
+    //Camera Controls
     glm::mat4 viewMatrix = glm::lookAt(cameraPos,  cameraPos + cameraFront,  cameraUp);
 
     //PROJECTION-VIEW MATRIX
@@ -14174,7 +14164,6 @@ void render()
     // glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
     
-
 
     //REMOVE BEFORE SUBMITTING. Rotating fence
     modelMatrix = glm::mat4(1.0f);
@@ -14399,25 +14388,20 @@ void render()
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawArrays(GL_TRIANGLES,0, sizeof(chikipiVertices));
 
-}
+    //Strafing Movement
+    float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
 
-//Source: https://www.youtube.com/watch?v=AWM4CUfffos
-void handleKeys(GLFWwindow *pWindow, int key, int scancode, int action, int mode)
-{
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-    {
-        glfwSetWindowShouldClose(pWindow, GL_TRUE);
-    }
-    float cameraSpeed = 100*deltaTime;
-
+    float cameraSpeed = 5*deltaTime;
     //For movement
     if(glfwGetKey(pWindow, GLFW_KEY_W) == GLFW_PRESS)
     {
-        cameraPos += cameraSpeed * cameraFront;
+        cameraPos += (float) cameraSpeed * cameraFront;
     }
     if(glfwGetKey(pWindow, GLFW_KEY_S) == GLFW_PRESS)
     {
-        cameraPos -= cameraSpeed * cameraFront;
+        cameraPos -= (float) cameraSpeed * cameraFront;
     }
     if(glfwGetKey(pWindow, GLFW_KEY_A) == GLFW_PRESS)
     {
@@ -14426,6 +14410,16 @@ void handleKeys(GLFWwindow *pWindow, int key, int scancode, int action, int mode
     if(glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
     {
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    }
+
+}
+
+//Source: https://www.youtube.com/watch?v=AWM4CUfffos
+void handleKeys(GLFWwindow *pWindow, int key, int scancode, int action, int mode)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(pWindow, GL_TRUE);
     }
 
     //For controlling light position
