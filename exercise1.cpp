@@ -42,10 +42,12 @@ float lastFrame = 0.0f;
 
 float deltaPulse = 0.0f;
 float lastSin = 0.0f;
+glm::vec3 lightPosition = glm::vec3(-2.0f, 0.0f, 1.0f);
+
+//Camera Vectors
 glm::vec3 cameraPos = glm::vec3(0.0f, 2.0f, 5.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-glm::vec3 lightPosition = glm::vec3(-2.0f, 0.0f, 1.0f);
 
 float fenceVertices[] =
     {
@@ -154,12 +156,6 @@ GLuint fenceIndices[] =
         //Upper Plank Back Face
         25,21,19,
         19,23,25,
-        // //Upper Plank Left Face
-        // 23,19,18,
-        // 18,22,23,
-        // //Upper Plank Right Face
-        // 20,21,24,
-        // 25,24,21,
     };
 
 
@@ -14112,6 +14108,19 @@ bool setup()
     return true;
 }
 
+
+glm::vec3 origin = glm::vec3(0.0f, 0.0f, 0.0f); // empty set
+
+glm::vec3 currentModelPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+glm::vec3 rot = glm::vec3(0.0f, 0.0f, 0.0f);
+glm::vec3 translate2 = glm::vec3(0.0f, 0.0f, 0.0f);
+
+
+bool move1 = true;
+bool move2 = false;
+bool move3 = false;
+bool move4 = false;
+
 void render()
 {
     glClearColor(0.0f, 0.3f, 0.3f, 0.5f);
@@ -14125,18 +14134,12 @@ void render()
     glEnable(GL_CULL_FACE);
     glBindVertexArray(fenceVao);
 
-    //Camera Controls
-    float currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
     //Light Controls
     glUniform3fv(glGetUniformLocation(shader, "lightPosition"), 1, glm::value_ptr(lightPosition));
 
 
     glm::mat4 projectionMatrix = glm::perspective(glm::radians(60.0f), (float)WINDOW_WIDTH / WINDOW_HEIGHT, 0.1f, 100.0f);
-
-    //We only have to specify a camera position, a target position and a vector that represents the up vector in world space
-                                    // camera position, target position, up vector
+    //Camera Controls
     glm::mat4 viewMatrix = glm::lookAt(cameraPos,  cameraPos + cameraFront,  cameraUp);
 
     //PROJECTION-VIEW MATRIX
@@ -14174,7 +14177,6 @@ void render()
     // glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
     glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
     
-
 
     //REMOVE BEFORE SUBMITTING. Rotating fence
     modelMatrix = glm::mat4(1.0f);
@@ -14391,13 +14393,90 @@ void render()
     //Chikipi
     glBindVertexArray(chikipiVao);
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 0.0f, -2.5f));
+    if(move1 == true){
+        if(currentModelPosition.z >= -3.5f){
+            currentModelPosition.z -= 0.01f;
+        }
+        modelMatrix = glm::translate(modelMatrix, currentModelPosition);
+        glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+
+        if(currentModelPosition.x <= 2.5f && currentModelPosition.z <= -3.5f){
+            currentModelPosition.x += 0.01f;
+        }
+        if(currentModelPosition.x >= 2.5f && currentModelPosition.z <= -3.5f){
+            move1 = false;
+            move2 = true;
+        }
+    }
+    if(move2 == true){
+        if(currentModelPosition.z <= 0.00f){
+            currentModelPosition.z += 0.01f;
+        }
+
+        if(currentModelPosition.z >= 0.00f && currentModelPosition.x >= -2.5f){
+            currentModelPosition.x -= 0.01f;
+        }
+
+        if(currentModelPosition.z >= 0.00f && currentModelPosition.x <= -2.5f){
+            move2 = false;
+            move3 = true;
+        }
+
+        modelMatrix = glm::translate(modelMatrix, currentModelPosition);
+        glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    }
+
+    if(move3 == true){
+        if(currentModelPosition.z >= -3.5f){
+            currentModelPosition.z -= 0.01;
+        }
+        if(currentModelPosition.x <= 2.5f && currentModelPosition.z <= -3.5f){
+            currentModelPosition.x += 0.01;
+        }
+        
+        if(currentModelPosition.x >= 2.5f && currentModelPosition.z <= -3.5f){
+            move2 = true;
+            move3 = false;
+        }
+        
+        
+        modelMatrix = glm::translate(modelMatrix, currentModelPosition);
+        glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    }
+    
+    
+    
+
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*57.5f), glm::vec3(0.0f, 1.0f, 0.0f));
     //Resetting and translating model from the rotation point by 1.5 in x
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(1.5f, 0.0f, 0.0f));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
     glDrawArrays(GL_TRIANGLES,0, sizeof(chikipiVertices));
+    
+    cout << "currentModelPosition: " << currentModelPosition.x << ", " << currentModelPosition.y << ", " << currentModelPosition.z << endl;
+
+    //Strafing Movement
+    float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
+    float cameraSpeed = 5*deltaTime;
+    //For movement
+    if(glfwGetKey(pWindow, GLFW_KEY_W) == GLFW_PRESS)
+    {
+        cameraPos += (float) cameraSpeed * cameraFront;
+    }
+    if(glfwGetKey(pWindow, GLFW_KEY_S) == GLFW_PRESS)
+    {
+        cameraPos -= (float) cameraSpeed * cameraFront;
+    }
+    if(glfwGetKey(pWindow, GLFW_KEY_A) == GLFW_PRESS)
+    {
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    }
+    if(glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
+    {
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    }
 
 }
 
@@ -14407,25 +14486,6 @@ void handleKeys(GLFWwindow *pWindow, int key, int scancode, int action, int mode
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
     {
         glfwSetWindowShouldClose(pWindow, GL_TRUE);
-    }
-    float cameraSpeed = 100*deltaTime;
-
-    //For movement
-    if(glfwGetKey(pWindow, GLFW_KEY_W) == GLFW_PRESS)
-    {
-        cameraPos += cameraSpeed * cameraFront;
-    }
-    if(glfwGetKey(pWindow, GLFW_KEY_S) == GLFW_PRESS)
-    {
-        cameraPos -= cameraSpeed * cameraFront;
-    }
-    if(glfwGetKey(pWindow, GLFW_KEY_A) == GLFW_PRESS)
-    {
-        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-    }
-    if(glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
-    {
-        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
     }
 
     //For controlling light position
