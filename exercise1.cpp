@@ -14393,6 +14393,8 @@ void render()
     //Chikipi
     glBindVertexArray(chikipiVao);
     modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(0.6f, 0.6f, 0.6f));
+
     if(move1 == true){
         if(currentModelPosition.z >= -3.5f){
             currentModelPosition.z -= 0.01f;
@@ -14450,7 +14452,10 @@ void render()
     modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*57.5f), glm::vec3(0.0f, 1.0f, 0.0f));
     //Resetting and translating model from the rotation point by 1.5 in x
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
     glDrawArrays(GL_TRIANGLES,0, sizeof(chikipiVertices));
+
     
     cout << "currentModelPosition: " << currentModelPosition.x << ", " << currentModelPosition.y << ", " << currentModelPosition.z << endl;
 
