@@ -14164,33 +14164,8 @@ void render()
     //REMOVE BEFORE SUBMITTING. Scaling model
     //MODEL MATRIX
     glm::mat4 modelMatrix = glm::mat4(1.0f); //identity matrix
-
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-10.2f, 0.0f, -0.45f));
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(pulse, pulse, pulse));
-    // modelMatrix = glm::rotate(modelMatrix, glm::radians( ( float) - 180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-
     glm::mat4 normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
 
-    //For cubes
-    // glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
-    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-    
-
-    //REMOVE BEFORE SUBMITTING. Rotating fence
-    modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::scale(modelMatrix, glm::vec3(0.7f, 0.7f, 0.7f));
-    modelMatrix = glm::translate(modelMatrix, glm::vec3(-13.5f, 0.0f, 0.5f));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*20), glm::vec3(0.0f, 1.0f, 0.0f));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-
-    normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
-
-    //For cubes
-    // glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / (11 * sizeof(float)));
-    glDrawElements(GL_TRIANGLES, sizeof(fenceIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 
     /*

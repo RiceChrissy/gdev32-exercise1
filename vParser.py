@@ -2,6 +2,7 @@ objfile = open("chikipi.obj")
 
 v = [] #list of sets of coordinates of shape vertices
 vn = [] #list of sets of vertex normals
+vt = [] #list of sets of texture coordinates
 f = [] #list of faces
 finalVertices = []
 finalIndices = [] # was actually not needed in the end, but left it here anyway
@@ -20,7 +21,13 @@ for line in objfile:
             x.remove("vn")
         y = [float(vertNormals) for vertNormals in x]
         vn.append(y)
-    elif(line[0] == "f" and line[1] == " "):
+    elif(line[0] == "v" and line[1] == "t"): # texture coordinates
+        x = line.split()
+        if("vt" in x):
+            x.remove("vt")
+        y = [float(texCoords) for texCoords in x]
+        vt.append(y)
+    elif(line[0] == "f" and line[1] == " "): # change to support the faces which include the textures
         lineReplaced = line.replace('//',' ')
         x = lineReplaced.split()
         if("f" in x):
