@@ -13944,7 +13944,55 @@ float chikipiVertices[] =
 
     };
 
+float basicCubeVertices[] = 
+    {
+       //  x,    y,    z,  color:x, y,    z, xnorm, ynorm, znorm,   s,  ,t 
+        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.875f, 0.5f, 
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.625f, 0.75f, 
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.625f, 0.5f, 
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.625f, 0.75f, 
+        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.375f, 1.0f, 
+        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.375f, 0.75f, 
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.625f, 0.0f, 
+        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.375f, 0.25f, 
+        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.375f, 0.0f, 
+        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.375f, 0.5f, 
+        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.125f, 0.75f, 
+        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.125f, 0.5f, 
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.625f, 0.5f, 
+        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.375f, 0.75f, 
+        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.375f, 0.5f, 
+        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.625f, 0.25f, 
+        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.375f, 0.5f, 
+        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.375f, 0.25f, 
+        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.875f, 0.5f, 
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.875f, 0.75f, 
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.625f, 0.75f, 
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.625f, 0.75f, 
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.625f, 1.0f, 
+        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.375f, 1.0f, 
+        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.625f, 0.0f, 
+        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.625f, 0.25f, 
+        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.375f, 0.25f, 
+        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.375f, 0.5f, 
+        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.375f, 0.75f, 
+        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.125f, 0.75f, 
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.625f, 0.5f, 
+        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.625f, 0.75f, 
+        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.375f, 0.75f, 
+        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.625f, 0.25f, 
+        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.625f, 0.5f, 
+        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.375f, 0.5f, 
+    };
 
+float planeVertices[] ={
+    -8.00f, -2.00f,  8.00f, 1.0f, 1.0f, 1.0f, 0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
+     8.00f, -2.00f,  8.00f, 1.0f, 1.0f, 1.0f, 0.0f,  1.0f,  0.0f,  4.0f, 0.0f,
+     8.00f, -2.00f, -8.00f, 1.0f, 1.0f, 1.0f, 0.0f,  1.0f,  0.0f,  4.0f, 4.0f,
+    -8.00f, -2.00f,  8.00f, 1.0f, 1.0f, 1.0f, 0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
+     8.00f, -2.00f, -8.00f, 1.0f, 1.0f, 1.0f, 0.0f,  1.0f,  0.0f,  4.0f, 4.0f,
+    -8.00f, -2.00f, -8.00f, 1.0f, 1.0f, 1.0f, 0.0f,  1.0f,  0.0f,  0.0f, 4.0f,
+};
 
 void getNormals()
 {   
@@ -14029,11 +14077,11 @@ void getNormals()
 };
 
 
-GLuint fenceVbo, pillarVbo, chikipiVbo;
-GLuint fenceVao, pillarVao, chikipiVao;
+GLuint fenceVbo, pillarVbo, chikipiVbo, cubeVBO, planeVBO;
+GLuint fenceVao, pillarVao, chikipiVao, cubeVAO, planeVAO;
 GLuint fenceEbo, pillarEbo;
 GLuint shader;
-GLuint brownWoodTexture, ebonyWoodTexture;
+GLuint brownWoodTexture, ebonyWoodTexture, marbleTexture, grassTexture;
 
 bool setup()
 {
@@ -14094,16 +14142,61 @@ bool setup()
     glEnableVertexAttribArray(1);
     glEnableVertexAttribArray(2);
 
+    // cube
+    glGenVertexArrays(1, &cubeVAO);
+    glGenBuffers(1, &cubeVBO);
+    glBindVertexArray(cubeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(basicCubeVertices), basicCubeVertices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (3 * sizeof(float)));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (6 * sizeof(float))); //enable textures
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (9 * sizeof(float)));
+
+
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
+    glEnableVertexAttribArray(3);
+
+    // plane
+    glGenVertexArrays(1, &planeVAO);
+    glGenBuffers(1, &planeVBO);
+    glBindVertexArray(planeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, planeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(planeVertices), planeVertices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (3 * sizeof(float)));
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (6 * sizeof(float))); //enable textures
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*) (9 * sizeof(float)));
+
+
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(2);
+    glEnableVertexAttribArray(3);
+
     shader = gdevLoadShader("exercise1.vs", "exercise1.fs");
     if (!shader) return false;
     
     //https://www.freepik.com/free-photo/
     //brown-wooden-flooring_4246371.htm#query=wood%20texture&position=3&from_view=keyword&track=ais&uuid=7d00bbbe-cafd-4a10-b4d9-581342a45521
+    
+    //https://www.freepik.com/free-photo/grass-texture-background_4115918.htm#query=green%20grass%20texture&position=1&from_view=keyword&track=ais&uuid=ef2f13d5-2522-4b60-b424-577e65372a02" Grass Image by kdekiara on Freepik
+    
     brownWoodTexture = gdevLoadTexture("brown-wood.jpg", GL_REPEAT, true, true);
     if (! brownWoodTexture) return false;
 
     ebonyWoodTexture = gdevLoadTexture("ebony-wood.jpg", GL_MIRRORED_REPEAT, true, true);
     if (! ebonyWoodTexture) return false;
+
+    marbleTexture = gdevLoadTexture("marble.jpeg", GL_REPEAT, true, true);
+    if (! marbleTexture) return false;
+
+    grassTexture = gdevLoadTexture("grass-texture-background.jpg", GL_REPEAT, true, true);
+    if (! grassTexture) return false;
 
     return true;
 }
@@ -14366,73 +14459,32 @@ void render()
     glDrawElements(GL_TRIANGLES, sizeof(pillarIndices) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
     //Chikipi
+    /*
     glBindVertexArray(chikipiVao);
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::scale(modelMatrix, glm::vec3(0.6f, 0.6f, 0.6f));
-
-    if(move1 == true){
-        if(currentModelPosition.z >= -3.5f){
-            currentModelPosition.z -= 0.01f;
-        }
-        modelMatrix = glm::translate(modelMatrix, currentModelPosition);
-        glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-
-        if(currentModelPosition.x <= 2.5f && currentModelPosition.z <= -3.5f){
-            currentModelPosition.x += 0.01f;
-        }
-        if(currentModelPosition.x >= 2.5f && currentModelPosition.z <= -3.5f){
-            move1 = false;
-            move2 = true;
-        }
-    }
-    if(move2 == true){
-        if(currentModelPosition.z <= 0.00f){
-            currentModelPosition.z += 0.01f;
-        }
-
-        if(currentModelPosition.z >= 0.00f && currentModelPosition.x >= -2.5f){
-            currentModelPosition.x -= 0.01f;
-        }
-
-        if(currentModelPosition.z >= 0.00f && currentModelPosition.x <= -2.5f){
-            move2 = false;
-            move3 = true;
-        }
-
-        modelMatrix = glm::translate(modelMatrix, currentModelPosition);
-        glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-    }
-
-    if(move3 == true){
-        if(currentModelPosition.z >= -3.5f){
-            currentModelPosition.z -= 0.01;
-        }
-        if(currentModelPosition.x <= 2.5f && currentModelPosition.z <= -3.5f){
-            currentModelPosition.x += 0.01;
-        }
-        
-        if(currentModelPosition.x >= 2.5f && currentModelPosition.z <= -3.5f){
-            move2 = true;
-            move3 = false;
-        }
-        
-        
-        modelMatrix = glm::translate(modelMatrix, currentModelPosition);
-        glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-    }
-    
-    
-    
-
-    modelMatrix = glm::rotate(modelMatrix, glm::radians((float) - (glfwGetTime())*57.5f), glm::vec3(0.0f, 1.0f, 0.0f));
-    //Resetting and translating model from the rotation point by 1.5 in x
     glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
-    normalMatrix = glm::mat4(glm::transpose(glm::inverse(modelMatrix)));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "normalMatrix"), 1, GL_FALSE, glm::value_ptr(normalMatrix));
     glDrawArrays(GL_TRIANGLES,0, sizeof(chikipiVertices));
-
+    */
     
-    cout << "currentModelPosition: " << currentModelPosition.x << ", " << currentModelPosition.y << ", " << currentModelPosition.z << endl;
+
+    //cube
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, marbleTexture);
+    glBindVertexArray(cubeVAO);
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 1.0f, 0.0f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(basicCubeVertices) / (11 * sizeof(float)));
+
+    //plane 
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, grassTexture);
+    glBindVertexArray(planeVAO);
+    modelMatrix = glm::mat4(1.0f);
+    modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 2.0f, 0.0f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(planeVertices) / (11 * sizeof(float)));
 
     //Strafing Movement
     float currentFrame = glfwGetTime();
