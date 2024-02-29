@@ -13946,43 +13946,43 @@ float chikipiVertices[] =
 
 float basicCubeVertices[] = 
     {
-       //  x,    y,    z,  color:x, y,    z, xnorm, ynorm, znorm,   s,  ,t 
-        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.875f, 0.5f, 
-        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.625f, 0.75f, 
-        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.625f, 0.5f, 
-        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.625f, 0.75f, 
-        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.375f, 1.0f, 
-        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.375f, 0.75f, 
-        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.625f, 0.0f, 
-        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.375f, 0.25f, 
-        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.375f, 0.0f, 
-        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.375f, 0.5f, 
-        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.125f, 0.75f, 
-        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.125f, 0.5f, 
-        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.625f, 0.5f, 
-        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.375f, 0.75f, 
-        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.375f, 0.5f, 
-        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.625f, 0.25f, 
-        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.375f, 0.5f, 
-        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.375f, 0.25f, 
-        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.875f, 0.5f, 
-        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.875f, 0.75f, 
-        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, 1.0f, -0.0f, 0.625f, 0.75f, 
-        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.625f, 0.75f, 
-        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.625f, 1.0f, 
-        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 1.0f, 0.375f, 1.0f, 
-        -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.625f, 0.0f, 
-        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.625f, 0.25f, 
-        -1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -0.0f, -0.0f, 0.375f, 0.25f, 
-        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.375f, 0.5f, 
-        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.375f, 0.75f, 
-        -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -1.0f, -0.0f, 0.125f, 0.75f, 
-        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.625f, 0.5f, 
-        1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.625f, 0.75f, 
-        1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, 0.375f, 0.75f, 
-        -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.625f, 0.25f, 
-        1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.625f, 0.5f, 
-        1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -0.0f, -0.0f, -1.0f, 0.375f, 0.5f, 
+       //  x,    y,    z,  color:x, y,    z, xnorm, ynorm, znorm,     s,     t 
+        -1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, 1.0f, -0.0f,  0.875f, 0.5f, 
+         1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -0.0f, 1.0f, -0.0f,  0.625f, 0.75f, 
+         1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, 1.0f, -0.0f,  0.625f, 0.5f, 
+         1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, 1.0f,  0.625f, 0.75f, 
+        -1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, 1.0f,  0.375f, 1.0f, 
+         1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, 1.0f,  0.375f, 0.75f, 
+        -1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -1.0f, -0.0f, -0.0f, 0.625f, 0.0f, 
+        -1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -1.0f, -0.0f, -0.0f, 0.375f, 0.25f, 
+        -1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,  -1.0f, -0.0f, -0.0f, 0.375f, 0.0f, 
+         1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -0.0f, -1.0f, -0.0f, 0.375f, 0.5f, 
+        -1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -1.0f, -0.0f, 0.125f, 0.75f, 
+        -1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -0.0f, -1.0f, -0.0f, 0.125f, 0.5f, 
+         1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,   1.0f, -0.0f, -0.0f, 0.625f, 0.5f, 
+         1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,   1.0f, -0.0f, -0.0f, 0.375f, 0.75f, 
+         1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,   1.0f, -0.0f, -0.0f, 0.375f, 0.5f, 
+        -1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, -1.0f, 0.625f, 0.25f, 
+         1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, -1.0f, 0.375f, 0.5f, 
+        -1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, -1.0f, 0.375f, 0.25f, 
+        -1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, 1.0f, -0.0f,  0.875f, 0.5f, 
+        -1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -0.0f, 1.0f, -0.0f,  0.875f, 0.75f, 
+         1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -0.0f, 1.0f, -0.0f,  0.625f, 0.75f, 
+         1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, 1.0f,  0.625f, 0.75f, 
+        -1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, 1.0f,  0.625f, 1.0f, 
+        -1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, 1.0f,  0.375f, 1.0f, 
+        -1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,  -1.0f, -0.0f, -0.0f, 0.625f, 0.0f, 
+        -1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,  -1.0f, -0.0f, -0.0f, 0.625f, 0.25f, 
+        -1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -1.0f, -0.0f, -0.0f, 0.375f, 0.25f, 
+         1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -0.0f, -1.0f, -0.0f, 0.375f, 0.5f, 
+         1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -1.0f, -0.0f, 0.375f, 0.75f, 
+        -1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -1.0f, -0.0f, 0.125f, 0.75f, 
+         1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,   1.0f, -0.0f, -0.0f, 0.625f, 0.5f, 
+         1.0f, 1.0f, 1.0f,    1.0f, 1.0f, 1.0f,   1.0f, -0.0f, -0.0f, 0.625f, 0.75f, 
+         1.0f, -1.0f, 1.0f,   1.0f, 1.0f, 1.0f,   1.0f, -0.0f, -0.0f, 0.375f, 0.75f, 
+        -1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, -1.0f, 0.625f, 0.25f, 
+         1.0f, 1.0f, -1.0f,   1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, -1.0f, 0.625f, 0.5f, 
+         1.0f, -1.0f, -1.0f,  1.0f, 1.0f, 1.0f,  -0.0f, -0.0f, -1.0f, 0.375f, 0.5f, 
     };
 
 float planeVertices[] ={
@@ -14081,7 +14081,7 @@ GLuint fenceVbo, pillarVbo, chikipiVbo, cubeVBO, planeVBO;
 GLuint fenceVao, pillarVao, chikipiVao, cubeVAO, planeVAO;
 GLuint fenceEbo, pillarEbo;
 GLuint shader;
-GLuint brownWoodTexture, ebonyWoodTexture, marbleTexture, grassTexture;
+GLuint brownWoodTexture, ebonyWoodTexture, marbleTexture, grassTexture, stoneBrickTexture;
 
 bool setup()
 {
@@ -14191,9 +14191,13 @@ bool setup()
 
     ebonyWoodTexture = gdevLoadTexture("ebony-wood.jpg", GL_MIRRORED_REPEAT, true, true);
     if (! ebonyWoodTexture) return false;
-
+    
+    // remove
     marbleTexture = gdevLoadTexture("marble.jpeg", GL_REPEAT, true, true);
     if (! marbleTexture) return false;
+
+    stoneBrickTexture = gdevLoadTexture("stonebrick.jpg", GL_REPEAT, true, true);
+    if (! stoneBrickTexture) return false;
 
     grassTexture = gdevLoadTexture("grass-texture-background.jpg", GL_REPEAT, true, true);
     if (! grassTexture) return false;
@@ -14470,7 +14474,7 @@ void render()
 
     //cube
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, marbleTexture);
+    glBindTexture(GL_TEXTURE_2D, stoneBrickTexture);
     glBindVertexArray(cubeVAO);
     modelMatrix = glm::mat4(1.0f);
     modelMatrix = glm::translate(modelMatrix, glm::vec3(0.0f, 1.0f, 0.0f));
